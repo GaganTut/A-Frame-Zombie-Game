@@ -5,6 +5,7 @@ class Zombie {
     this.speed = speed;
     this.isAlive = true;
     this._maxHealth = health;
+    this.geometry = "primitive: box; height: 2; width: 0.5; depth: 0.5";
   }
 }
 

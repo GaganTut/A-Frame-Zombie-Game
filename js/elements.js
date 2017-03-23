@@ -41,15 +41,6 @@ var elementsCreation = function() {
     parent.appendChild(newAnim);
   }
 
-  var animAtts = {
-    attribute: "position",
-    begin: "load",
-    dur: "1000",
-    to: "0 0 0",
-    repeat: "indefinite",
-    direction: "normal"
-  };
-
   function randomPosition() {
     var fourCorners = ["-25 2 -25", "25 2 -25", "25 2 25", "-25 2 25"];
     return fourCorners[Math.floor(Math.random() * 3)];
@@ -58,7 +49,6 @@ var elementsCreation = function() {
   function createZombie(zomType) {
     var newZombie = new zomType();
     newZombie.position = randomPosition();
-    newZombie.geometry = "primitive: box; height: 2; width: 0.5; depth: 0.5";
 
     createframeElem("a-entity", "#wholeCanvas", "myZombie", newZombie, "zombiesss");
 
@@ -68,6 +58,15 @@ var elementsCreation = function() {
   function zombieTimer() {
     createZombie(FastZombie);
   }
+
+  var animAtts = {
+    attribute: "position",
+    begin: "load",
+    dur: "1000",
+    to: "0 0 0",
+    repeat: "indefinite",
+    direction: "normal"
+  };
 
   return {
     createZombie,
