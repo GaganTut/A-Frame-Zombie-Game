@@ -8,7 +8,6 @@ class Zombie {
     this.position = position;
     this["obj-model"] = "obj: #myObj; mtl: #myMtl";
     this.animation = `property: position; dir: normal; dur: 10000; loop: false; to: ${getPlayerLocation()}`;
-    //this.geometry = "height: 1; width: 0.25; depth: 0.25";
     this.onclick = "hitZombie(event)";
   }
 }

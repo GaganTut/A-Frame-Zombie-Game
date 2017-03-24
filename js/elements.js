@@ -1,7 +1,7 @@
 var elementsCreation = function() {
   var wholeScene = document.querySelector("#wholeCanvas");
   var playerCam = document.querySelector("#playerCam");
-  var playerPosition = playerCam.position;
+  var playerPosition = playerCam.posit;
 
 
   function anyPosition() {
@@ -25,8 +25,17 @@ var elementsCreation = function() {
     createZombie(FastZombie);
   }
 
+  function zombieChase() {
+    var allZombies = document.querySelectorAll(".mapZombie");
+    for (var i = 0; i < allZombies.length; i++) {
+      allZombies[i].setAttribute("animation", `property: position; dir: normal; dur: 10000; loop: false; to: ${getPlayerLocation()}`);
+    }
+    //console.log(allZombies, playerCam.attributes.position.value);
+  }
+
   return {
     createZombie,
-    zombieTimer
+    zombieTimer,
+    zombieChase
   };
 };
