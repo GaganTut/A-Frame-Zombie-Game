@@ -15,5 +15,7 @@ function hitZombie(event) {
 
 function getPlayerLocation() {
   var playerCamera = document.querySelector("#playerCam");
-  return playerCamera.attributes.position.value;
+  var playerPos =  playerCamera.attributes.position.value;
+
+  return playerPos;
 }

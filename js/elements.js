@@ -5,7 +5,7 @@ var elementsCreation = function() {
 
 
   function anyPosition() {
-    var fourCorners = [{x: -25, y: 0.5, z: -25}, {x: 25, y: 0.5, z: -25}, {x: 25, y: 0.5, z: 25}, {x:-25, y: 0.5, z: 25}];
+    var fourCorners = [{x: -25, y: 0, z: -25}, {x: 25, y: 0, z: -25}, {x: 25, y: 0, z: 25}, {x:-25, y: 0, z: 25}];
     return fourCorners[Math.floor(Math.random() * 4)];
   }
 
