@@ -1,7 +1,6 @@
 (function() {
   var anim = elementsCreation();
 
-  var loadZombies = setInterval(anim.zombieTimer, 1000);
-
+  var loadZombies = setInterval(anim.zombieTimer, 5000);
 
 })();

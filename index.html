@@ -4,24 +4,23 @@
   <meta charset="UTF-8">
   <title>3D-Zombies</title>
   <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+  <!-- <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v1.3.1/dist/aframe-physics-system.min.js"></script> -->
   <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
-  <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v1.3.1/dist/aframe-physics-system.min.js"></script>
   <script src="https://unpkg.com/aframe-animation-component@^3.2.0/dist/aframe-animation-component.min.js"></script>
 </head>
 <body>
-  <a-scene id="wholeCanvas" physics="debug: true">
+  <a-scene id="wholeCanvas" physics>
     <a-assets>
+      <a-asset-item id="myObj" src="assets/zomObj/zombieMan.png"></a-asset-item>
+      <a-asset-item id="myMtl" src="assets/zomObj/zombie.mtl"></a-asset-item>
     </a-assets>
 
     <a-sky color="skyblue"></a-sky>
 
-    <a-plane static-body color="yellow" height="50" width="50" rotation="-90 0 0" position="0 -0.01 0"></a-plane>
-
-    <a-box static-body position="0 0.5 -5" width="3" height="1" depth="1"></a-box>
-
+    <a-plane static-body color="yellow" height="50" width="50" rotation="-90 0 0" position="0 0 0"></a-plane>
 
     <a-entity>
-      <a-entity camera look-controls wasd-controls mouse-cursor fuse="false">
+      <a-entity id="playerCam" camera look-controls wasd-controls mouse-cursor fuse="false" position="0 1.75 0">
       </a-entity>
     </a-entity>
 
@@ -30,5 +29,6 @@
   <script src="js/playerClasses.js" type="text/javascript"></script>
   <script src="js/elements.js" type="text/javascript"></script>
   <script src="js/app.js" type="text/javascript"></script>
+  <script src="js/helper.js" type="text/javascript"></script>
 </body>
 </html>

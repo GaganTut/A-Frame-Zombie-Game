@@ -1,76 +1,32 @@
 var elementsCreation = function() {
-  var wholeScene = document.querySelector("#wholeScene");
+  var wholeScene = document.querySelector("#wholeCanvas");
+  var playerCam = document.querySelector("#playerCam");
+  var playerPosition = playerCam.position;
 
-  function createframeElem(elemType, parentID, htmlID, attrObj, className) {
-    var newElem = document.createElement(elemType);
-    newElem.id = htmlID;
-    newElem.className = className;
 
-    document.querySelector(parentID).appendChild(newElem);
-    attsInElements("#" + htmlID, attrObj);
-
-    this.addEventListener("click", function(event) {
-      this.health -= 1;
-      if (this.health <= 0) {
-        removeElement(event.target);
-      }
-    });
-    this.addEventListener("load", (function(){
-      newElem.emit("load");
-    })());
+  function anyPosition() {
+    var fourCorners = [{x: -25, y: 0.5, z: -25}, {x: 25, y: 0.5, z: -25}, {x: 25, y: 0.5, z: 25}, {x:-25, y: 0.5, z: 25}];
+    return fourCorners[Math.floor(Math.random() * 4)];
   }
 
-  function addAttribute(htmlID, attribute, value) { // Use ID Selector (ex. "#htmlID")
-    var thisElement = document.querySelector(htmlID);
-    thisElement.setAttribute(attribute, value);
-  }
-
-  function attsInElements(htmlID, attrObj) {
-    for (var eachAttr in attrObj) {
-      addAttribute(htmlID, eachAttr, attrObj[eachAttr]);
-    }
-  }
-
-  function createEvent(parentID, attrObj) {
-    var newAnim = document.createElement("a-animation");
-    for (var objKey in attrObj) {
-      newAnim.setAttribute(objKey, attrObj[objKey]);
+  function createZombie(attrObj) {
+    var zombieObj = new attrObj(anyPosition());
+    var newZombie = document.createElement("a-entity");
+    newZombie.className = "mapZombie";
+    newZombie.id = "zombie" + Math.floor(Math.random() * 100000);
+    for (var key in zombieObj) {
+      newZombie.setAttribute(key, zombieObj[key]);
     }
 
-    var parent = document.querySelector(parentID);
-    parent.appendChild(newAnim);
-  }
-
-  function randomPosition() {
-    var fourCorners = ["-25 2 -25", "25 2 -25", "25 2 25", "-25 2 25"];
-    return fourCorners[Math.floor(Math.random() * 3)];
-  }
-
-  function createZombie(zomType) {
-    var newZombie = new zomType();
-    newZombie.position = randomPosition();
-
-    createframeElem("a-entity", "#wholeCanvas", "myZombie", newZombie, "zombiesss");
-
-    createEvent("#myZombie", animAtts);
+    wholeScene.appendChild(newZombie);
   }
 
   function zombieTimer() {
     createZombie(FastZombie);
   }
 
-  var animAtts = {
-    attribute: "position",
-    begin: "load",
-    dur: "1000",
-    to: "0 0 0",
-    repeat: "indefinite",
-    direction: "normal"
-  };
-
   return {
     createZombie,
-    createframeElem,
     zombieTimer
   };
 };
